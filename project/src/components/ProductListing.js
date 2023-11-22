@@ -1,16 +1,23 @@
 import React from 'react';
 import { Card, Button, Rating } from 'semantic-ui-react';
-const ProductListing = ({ products }) => {
- return (
+
+const ProductListing = ({ products, buyNow }) => {
+  return (
     <Card.Group itemsPerRow={4}>
       {products.map((product) => (
         <Card key={product.id} raised className="product-card">
-          <Card.Content textAlign="center">
-            <img
-              src={product.image}
-              alt={product.title}
-              className="product-image"
-            />
+              <Card.Content textAlign="center">
+                  <Card>
+                      <img
+                       src={product.image}
+                       alt={product.title}
+                       className="product-image"
+                        style={{
+                              width: '100px',
+                              height:'100px'
+                       }}   
+                    />
+                  </Card>
             <Card.Header>{product.title}</Card.Header>
             <Card.Meta>
               <span className="price">${product.price}</span>
@@ -19,17 +26,14 @@ const ProductListing = ({ products }) => {
           </Card.Content>
           <Card.Content extra textAlign="center">
             <Rating icon="star" defaultRating={product.rating.rate} maxRating={5} />
-            <Button fluid color="blue">
-              Add to Cart
-            </Button>
-            <Button fluid color="green">
+            <Button fluid color="green" onClick={() => buyNow(product)}>
               Buy Now
             </Button>
           </Card.Content>
         </Card>
       ))}
     </Card.Group>
- );
+  );
 };
 
 export default ProductListing;
