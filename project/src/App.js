@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+
+
+import React, { useState, useEffect } from 'react';
+import NavBar from './components/NavBar';
+import ProductList from './components/ProductListing'; // Assuming your component is named ProductList
+import Footer from './/components/Footer';
+
+const App = () => {
+  const [products, setProducts] = useState([]);
+  
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array means this effect runs once, like componentDidMount
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      <ProductList products={products} />
+      <Footer />
     </div>
   );
-}
+};
+
 
 export default App;

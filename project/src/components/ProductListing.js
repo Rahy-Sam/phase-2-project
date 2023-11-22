@@ -6,6 +6,7 @@ const ProductListing = ({ products, buyNow }) => {
     <Card.Group itemsPerRow={4}>
       {products.map((product) => (
         <Card key={product.id} raised className="product-card">
+<<<<<<< HEAD
               <Card.Content textAlign="center">
                   <Card>
                       <img
@@ -18,6 +19,15 @@ const ProductListing = ({ products, buyNow }) => {
                        }}   
                     />
                   </Card>
+=======
+          <Card.Content textAlign="center">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="product-image"
+              
+            />
+>>>>>>> fae531d47cdcaf8998b1f676adfb2531d0dd290e
             <Card.Header>{product.title}</Card.Header>
             <Card.Meta>
               <span className="price">${product.price}</span>

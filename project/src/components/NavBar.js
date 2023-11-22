@@ -15,5 +15,6 @@ const NavBar = ({ searchTerm, setSearchTerm }) => {
   );
 };
 
+
 export default NavBar;
 
