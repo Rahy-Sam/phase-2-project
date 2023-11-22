@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 
 const Footer = () => {
@@ -12,30 +11,3 @@ const Footer = () => {
 };
 
 export default Footer;
-=======
-// Footer.js
-
-import React from 'react';
-
-const Footer = () => {
-  return (
-    <footer style={footerStyle}>
-      <p>&copy; group 4</p>
-    </footer>
-  );
-};
-
-const footerStyle = {
-  backgroundColor: '#333',
-  color: '#fff',
-  textAlign: 'center',
-  padding: '1rem',
-  position: 'fixed',
-  left: '0',
-  bottom: '0',
-  width: '100%',
-};
-
-
-export default Footer;
->>>>>>> fae531d47cdcaf8998b1f676adfb2531d0dd290e
