@@ -1,17 +1,19 @@
 import React from 'react';
-import Footer from './Footer'; 
+const NavBar = ({ searchTerm, setSearchTerm }) => {
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-const NavBar = () => {
   return (
     <div className="navbar">
       <h1>Sales App</h1>
       <div className="search-bar">
-        <input type="text" placeholder="Search..." />
+        <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchChange} />
         <button type="button">Search</button>
       </div>
-      <Footer /> {/* Include the Footer component */}
     </div>
   );
 };
 
 export default NavBar;
+
