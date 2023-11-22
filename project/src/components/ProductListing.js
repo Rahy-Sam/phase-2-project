@@ -10,6 +10,7 @@ const ProductListing = ({ products }) => {
               src={product.image}
               alt={product.title}
               className="product-image"
+              
             />
             <Card.Header>{product.title}</Card.Header>
             <Card.Meta>

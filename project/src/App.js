@@ -8,6 +8,7 @@ import Footer from './/components/Footer';
 
 const App = () => {
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,5 +32,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
