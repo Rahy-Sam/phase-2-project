@@ -1,10 +1,7 @@
-
-
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import NavBar from './components/NavBar';
-import ProductList from './components/ProductListing'; // Assuming your component is named ProductList
-import Footer from './/components/Footer';
+import ProductListing from './components/ProductListing';
+import Footer from './components/Footer';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -22,12 +19,12 @@ const App = () => {
     };
 
     fetchProducts();
-  }, []); // Empty dependency array means this effect runs once, like componentDidMount
+  }, []); 
 
   return (
-    <div>
+    <div className="App">
       <NavBar />
-      <ProductList products={products} />
+      <ProductListing />
       <Footer />
     </div>
   );
@@ -35,3 +32,6 @@ const App = () => {
 
 
 export default App;
+
+
+
