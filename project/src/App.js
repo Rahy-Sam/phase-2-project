@@ -4,6 +4,8 @@ import ProductListing from './components/ProductListing';
 import Footer from './components/Footer';
 import ProductPage from './components/ProductPage';
 import ProductModal from './components/ProductModal';
+import 'semantic-ui-css/semantic.min.css';
+
 
 const App = () => {
   const [products, setProducts] = useState([]);
