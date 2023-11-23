@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { Card, Button, Rating, Grid } from 'semantic-ui-react';
 import ProductModal from './ProductModal';
+import { useCart } from './CartContext';
 
-const ProductListing = ({ products, addProduct, onProductClick }) => {
+const ProductListing = ({ products }) => {
+  const { addToCart } = useCart();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const handleBuyClick = (productId) => {
+    const selectedProduct = products.find((product) => product.id === productId);
+    addToCart(selectedProduct);
+  };
+
   const handleProductClick = (productId) => {
-    const product = products.find((product) => product.id === productId);
-    setSelectedProduct(product);
+    const selectedProduct = products.find((product) => product.id === productId);
+    setSelectedProduct(selectedProduct);
   };
 
   const closeModal = () => {
@@ -16,7 +23,7 @@ const ProductListing = ({ products, addProduct, onProductClick }) => {
 
   return (
     <div>
-      <h2>Products</h2>
+      <h2>Items</h2>
       <Grid columns={4}>
         {products.map((product) => (
           <Grid.Column key={product.id}>
@@ -39,7 +46,10 @@ const ProductListing = ({ products, addProduct, onProductClick }) => {
               </Card.Content>
               <Card.Content extra textAlign="center">
                 <Rating icon="star" defaultRating={product.rating.rate} maxRating={5} />
-                <Button fluid color="green" onClick={() => handleProductClick(product.id)}>
+                <Button fluid color="green" onClick={() => handleBuyClick(product.id)}>
+                  Buy
+                </Button>
+                <Button fluid color="blue" onClick={() => handleProductClick(product.id)}>
                   View Details
                 </Button>
               </Card.Content>
