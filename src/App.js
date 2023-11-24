@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Loader, Button } from 'semantic-ui-react'; // Import Loader and Button from Semantic UI React
 import NavBar from './components/NavBar';
 import ProductListing from './components/ProductListing';
 import Footer from './components/Footer';
 import ProductPage from './components/ProductPage';
 import ProductModal from './components/ProductModal';
 import { CartProvider } from './components/CartContext';
+import ShoppingCart from './components/ShoppingCart';
+import Contacts from './pages/Contacts';
+import HomePage from './pages/HomePage';
 import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]); // Added filteredProducts state
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // Added searchTerm state
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,10 +26,10 @@ const App = () => {
         const response = await fetch('http://localhost:3001/products');
         const data = await response.json();
         setProducts(data);
-        setFilteredProducts(data); // Initialize filteredProducts with all products
+        setFilteredProducts(data);
       } catch (error) {
         console.error('Error fetching product data:', error);
-        setError('Error fetching product data');
+        setError('Error fetching product data. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -33,7 +38,6 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  // Update filteredProducts when searchTerm changes
   useEffect(() => {
     const filtered = products.filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -52,10 +56,10 @@ const App = () => {
       });
       const newProduct = await response.json();
       setProducts([...products, newProduct]);
-      setFilteredProducts([...filteredProducts, newProduct]); // Update filteredProducts as well
+      setFilteredProducts([...filteredProducts, newProduct]);
     } catch (error) {
       console.error('Error adding product:', error);
-      setError('Error adding product');
+      setError('Error adding product. Please try again.');
     }
   };
 
@@ -69,16 +73,27 @@ const App = () => {
 
   const renderContent = () => {
     if (loading) {
-      return <p>Loading...</p>;
+      return (
+        <div style={{ textAlign: 'center', paddingTop: '50px' }}>
+          <Loader active inline="centered" />
+        </div>
+      );
     } else if (error) {
-      return <p>{error}</p>;
+      return (
+        <div style={{ textAlign: 'center', paddingTop: '50px' }}>
+          <p style={{ color: 'red' }}>{error}</p>
+          <Button primary onClick={() => window.location.reload()}>
+            Retry
+          </Button>
+        </div>
+      );
     } else if (selectedProductId) {
-      const selectedProduct = products.find((product) => product.id === selectedProductId);
+      const selectedProduct = filteredProducts.find((product) => product.id === selectedProductId);
       return <ProductPage product={selectedProduct} />;
     } else {
       return (
         <ProductListing
-          products={filteredProducts} // Render filteredProducts instead of all products
+          products={filteredProducts}
           addProduct={addProduct}
           onProductClick={handleProductClick}
         />
@@ -86,21 +101,30 @@ const App = () => {
     }
   };
 
-  return (
+return (
     <div className="App">
       <CartProvider>
-        <NavBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-        {renderContent()}
-        <Footer />
-        {selectedProductId && (
-          <ProductModal
-            product={products.find((product) => product.id === selectedProductId)}
-            onClose={() => setSelectedProductId(null)}
-          />
-        )}
+        <Router>
+          <NavBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
+          <Switch>
+            <Route path="/" exact component={() => <HomePage products={filteredProducts} />} />
+            <Route path="/contacts" exact component={Contacts} />
+            <Route path="/products" exact component={renderContent} />
+            <Route path="/cart" exact component={ShoppingCart} />
+          </Switch>
+          <Footer />
+          {selectedProductId && (
+            <ProductModal
+              product={filteredProducts.find((product) => product.id === selectedProductId)}
+              onClose={() => setSelectedProductId(null)}
+            />
+          )}
+        </Router>
       </CartProvider>
     </div>
   );
+
 };
 
 export default App;
+

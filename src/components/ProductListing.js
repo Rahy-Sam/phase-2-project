@@ -42,12 +42,11 @@ const ProductListing = ({ products, addProduct, onProductClick }) => {
                 <Button fluid color="green" onClick={() => handleProductClick(product.id)}>
                   View Details
                 </Button>
-                {/* Conditionally render the Buy button based on the purchase status */}
                 {product.isBought ? (
                   <p>Already bought</p>
                 ) : (
-                  <Button fluid color="blue" onClick={() => handleProductClick(product.id)}>
-                    Buy
+                  <Button fluid color="blue" onClick={() => addProduct(product)}>
+                    Add to Cart
                   </Button>
                 )}
               </Card.Content>
@@ -55,9 +54,11 @@ const ProductListing = ({ products, addProduct, onProductClick }) => {
           </Grid.Column>
         ))}
       </Grid>
-      {selectedProduct && <ProductModal product={selectedProduct} onClose={closeModal} />}
+      {selectedProduct && <ProductModal product={selectedProduct} onClose={closeModal} addProduct={addProduct} />}
+      
     </div>
   );
 };
 
 export default ProductListing;
+

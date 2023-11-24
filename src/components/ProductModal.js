@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
-import { Modal, Image, Button } from 'semantic-ui-react';
+import { Modal, Image, Button, Rating } from 'semantic-ui-react';
 import { useCart } from './CartContext';
 
-const ProductModal = ({ product, onClose, onBuy }) => {
-  const [isBought, setIsBought] = useState(false);
+const ProductModal = ({ product, onClose }) => {
+  const [isBought, setIsBought] = useState(product.isBought);
   const { addToCart } = useCart();
 
+  const handleAddToCartClick = () => {
+    addToCart(product);  
+  };
+
   const handleBuyClick = () => {
-    fetch(`http://localhost:3001/products/${product.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ isBought: true }),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        // Updating the local state to show the congratulatory message
-        setIsBought(true);
-        // Adding the product to the cart (assuming you have a CartContext)
-        addToCart(product);
-      })
-      .catch((error) => console.error('Error buying product:', error));
+    addToCart(product);  
+    setIsBought(true);
   };
 
   return (
@@ -33,14 +24,15 @@ const ProductModal = ({ product, onClose, onBuy }) => {
           <p>{product.description}</p>
           <p>Price: ${product.price}</p>
           <p>Category: {product.category}</p>
-          <p>Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
+          <Rating icon="star" defaultRating={product.rating.rate} maxRating={5} disabled />
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        {isBought ? (
-          <p>Congratulations! You have bought {product.title}</p>
-        ) : (
-          <Button primary onClick={handleBuyClick}>
+        <Button primary onClick={handleAddToCartClick}>
+          Add to Cart
+        </Button>
+        {!isBought && (
+          <Button positive onClick={handleBuyClick}>
             Buy
           </Button>
         )}
@@ -51,3 +43,4 @@ const ProductModal = ({ product, onClose, onBuy }) => {
 };
 
 export default ProductModal;
+
