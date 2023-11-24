@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import ProductPage from './components/ProductPage';
 import ProductModal from './components/ProductModal';
 import { CartProvider } from './components/CartContext';
-import ShoppingCart from './components/ShoppingCart';
+import ShoppingCart from './pages/ShoppingCart';
 import Contacts from './pages/Contacts';
 import HomePage from './pages/HomePage';
 import 'semantic-ui-css/semantic.min.css';
