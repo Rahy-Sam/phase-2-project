@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Loader, Button } from 'semantic-ui-react'; // Import Loader and Button from Semantic UI React
+import { Loader, Button } from 'semantic-ui-react';
 import NavBar from './components/NavBar';
 import ProductListing from './components/ProductListing';
 import Footer from './components/Footer';
@@ -72,6 +72,8 @@ const App = () => {
   };
 
   const renderContent = () => {
+    console.log('Rendering content...');
+
     if (loading) {
       return (
         <div style={{ textAlign: 'center', paddingTop: '50px' }}>
@@ -101,7 +103,7 @@ const App = () => {
     }
   };
 
-return (
+  return (
     <div className="App">
       <CartProvider>
         <Router>
@@ -123,7 +125,6 @@ return (
       </CartProvider>
     </div>
   );
-
 };
 
 export default App;

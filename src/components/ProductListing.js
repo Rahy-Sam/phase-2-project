@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, Button, Rating, Grid } from 'semantic-ui-react';
+import { Card, Rating, Grid } from 'semantic-ui-react';
 import ProductModal from './ProductModal';
 
-const ProductListing = ({ products, addProduct, onProductClick }) => {
+const ProductListing = ({ products, onProductClick }) => {
   const [selectedProduct, setSelectedProduct] = React.useState(null);
 
   const handleProductClick = (productId) => {
@@ -20,7 +20,7 @@ const ProductListing = ({ products, addProduct, onProductClick }) => {
       <Grid columns={4}>
         {products.map((product) => (
           <Grid.Column key={product.id}>
-            <Card raised className="product-card">
+            <Card raised className="product-card" onClick={() => handleProductClick(product.id)}>
               <Card.Content textAlign="center">
                 <img
                   src={product.image}
@@ -39,23 +39,12 @@ const ProductListing = ({ products, addProduct, onProductClick }) => {
               </Card.Content>
               <Card.Content extra textAlign="center">
                 <Rating icon="star" defaultRating={product.rating.rate} maxRating={5} />
-                <Button fluid color="green" onClick={() => handleProductClick(product.id)}>
-                  View Details
-                </Button>
-                {product.isBought ? (
-                  <p>Already bought</p>
-                ) : (
-                  <Button fluid color="blue" onClick={() => addProduct(product)}>
-                    Add to Cart
-                  </Button>
-                )}
               </Card.Content>
             </Card>
           </Grid.Column>
         ))}
       </Grid>
-      {selectedProduct && <ProductModal product={selectedProduct} onClose={closeModal} addProduct={addProduct} />}
-      
+      {selectedProduct && <ProductModal product={selectedProduct} onClose={closeModal} />}
     </div>
   );
 };

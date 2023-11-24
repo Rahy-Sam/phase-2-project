@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Image, Button, Rating } from 'semantic-ui-react';
 import { useCart } from './CartContext';
 
 const ProductModal = ({ product, onClose }) => {
-  const [isBought, setIsBought] = useState(product.isBought);
   const { addToCart } = useCart();
 
-  const handleAddToCartClick = () => {
-    addToCart(product);  
+  const handleBuyClick = () => {
+    addToCart(product);
+    onClose(); 
   };
 
-  const handleBuyClick = () => {
-    addToCart(product);  
-    setIsBought(true);
+  const handleAddToCartClick = () => {
+    addToCart(product);
   };
 
   return (
@@ -31,11 +30,9 @@ const ProductModal = ({ product, onClose }) => {
         <Button primary onClick={handleAddToCartClick}>
           Add to Cart
         </Button>
-        {!isBought && (
-          <Button positive onClick={handleBuyClick}>
-            Buy
-          </Button>
-        )}
+        <Button positive onClick={handleBuyClick}>
+          Buy Now
+        </Button>
         <Button onClick={onClose}>Close</Button>
       </Modal.Actions>
     </Modal>
@@ -43,4 +40,3 @@ const ProductModal = ({ product, onClose }) => {
 };
 
 export default ProductModal;
-
