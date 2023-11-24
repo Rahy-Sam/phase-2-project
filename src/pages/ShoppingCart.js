@@ -18,7 +18,9 @@ const ShoppingCart = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <Header as="h2">Shopping Cart</Header>
+      <Header as="h2" style={{ color: '#4285f4' }}>
+        Shopping Cart
+      </Header>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (

@@ -15,12 +15,12 @@ const ProductListing = ({ products, onProductClick }) => {
   };
 
   return (
-    <div>
-      <h2>Product Listing</h2>
+    <div style={productListStyle}>
+      <h2 style={{ color: '#4285f4' }}>Our Products</h2>
       <Grid columns={4}>
         {products.map((product) => (
-          <Grid.Column key={product.id}>
-            <Card raised className="product-card" onClick={() => handleProductClick(product.id)}>
+          <Grid.Column key={product.id} onClick={() => handleProductClick(product.id)}>
+             <Card raised className="product-card" onClick={() => handleProductClick(product.id)}>
               <Card.Content textAlign="center">
                 <img
                   src={product.image}
@@ -49,5 +49,8 @@ const ProductListing = ({ products, onProductClick }) => {
   );
 };
 
-export default ProductListing;
+const productListStyle = {
+  padding: '20px',
+};
 
+export default ProductListing;
