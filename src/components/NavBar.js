@@ -10,7 +10,7 @@ const NavBar = ({ searchTerm, onSearchChange }) => {
     <div className="navbar" style={navbarStyle}>
       <div className="navbar-center">
         <Link to="/">
-          <h1>Sales App</h1>
+          <h1>Soko Safi</h1>
         </Link>
       </div>
       <div className="navbar-right">

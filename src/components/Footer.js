@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer style={footerStyle}>
       <div style={contentStyle}>
-        <p>Designed by Mary Njeri, Raymond Mwaiki, Lawrence Mwirigi, Mohammed Hussein, and Maina Zaquir</p>
+        <p>Designed by Mary Njeri, Raymond Mwaiki, Lawrence Mwirigi, Mohammed Hussein and Maina Zaquir</p>
         <p>&copy; 2023 E-Commerce App. All rights reserved.</p>
       </div>
     </footer>
