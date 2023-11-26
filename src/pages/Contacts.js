@@ -7,7 +7,7 @@ const Contacts = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://localhost:3001/products', {
+      const response = await fetch('https://backend-wndr.onrender.com/Products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,6 +39,7 @@ const Contacts = () => {
             Talk to us personally and personalize your suggestions straight to us;
           </p>
           <p>Phone number: +254798357848</p>
+          
           <a href="mailto:mzaquir58@gmail.com">Scrum leader: Zaquir Maina</a> <br />
         </Card.Description>
       </Card.Content>

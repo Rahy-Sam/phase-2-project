@@ -14,16 +14,17 @@ const NavBar = ({ searchTerm, onSearchChange }) => {
         </Link>
       </div>
       <div className="navbar-right">
-        <Link to="/contacts" style={linkStyle}>
-          Contacts
-        </Link>
+        
         <Link to="/" style={linkStyle}>
           Home
-        </Link>
-        
+        </Link>        
         <Link to="/cart" style={linkStyle}>
           Shopping Cart
         </Link>
+        <Link to="/contacts" style={linkStyle}>
+          Contacts
+        </Link>
+        
       </div>
       <div className="search-bar">
         <input

@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
+        const response = await fetch('https://backend-wndr.onrender.com/Products');
         const data = await response.json();
         setProducts(data);
         setFilteredProducts(data);
@@ -47,7 +47,7 @@ const App = () => {
 
   const addProduct = async (product) => {
     try {
-      const response = await fetch('http://localhost:3001/products', {
+      const response = await fetch('https://backend-wndr.onrender.com/Products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
