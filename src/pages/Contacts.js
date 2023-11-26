@@ -57,10 +57,10 @@ const Contacts = () => {
           <label>
             Rate Your Experience:
             <Rating
-              icon="star"
-              rating={rating}
-              maxRating={5}
-              onRate={(e, { rating }) => setRating(rating)}
+               icon="star"
+               rating={rating}
+               maxRating={5}
+              onRate={(e, data) => setRating(data.rating)}
             />
           </label>
           <br />
