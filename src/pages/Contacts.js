@@ -38,9 +38,14 @@ const Contacts = () => {
           <p>
             Talk to us personally and personalize your suggestions straight to us;
           </p>
-          <p>Phone number: +254798357848</p>
-          
-          <a href="mailto:mzaquir58@gmail.com">Scrum leader: Zaquir Maina</a> <br />
+
+          <p>Mary Njeri: +254706304253</p>
+          <p>Lawrence Mwirigi: +254736730114</p>
+          <p>Abdi Hussein: +254781278495</p>
+          <p>Raymond Mwaiki: +254768179319</p>
+          <p>Maina Zaquir: +254798357848</p>
+
+          <a href="mailto:mzaquir58@gmail.com">Email - Zaquir Maina</a> <br />
         </Card.Description>
       </Card.Content>
       <Card.Content>
